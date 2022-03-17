@@ -7,6 +7,8 @@ public class Main {
         menuPrincipal menu = new menuPrincipal();
         
         menu.setVisible(true);
+        
+        System.out.println("Hola mundo");
     }
     
 }
