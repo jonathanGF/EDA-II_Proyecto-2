@@ -8,7 +8,7 @@ public class Main {
         
         menu.setVisible(true);
         
-        System.out.println("Hola mundo");
+        
     }
     
 }
