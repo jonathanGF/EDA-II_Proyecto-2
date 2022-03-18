@@ -2,6 +2,21 @@
 package proyecto1;
 
 public class RadixSort {
+    public void radixString(String texto){
+        
+        String arr2[] = texto.split(",");
+        int arr[] = new int [arr2.length];
+        
+        //Aun no arreglar
+        System.out.println("text" +  texto);
+        System.out.println("arr2[0]=" + arr2[0]);
+        //-1 del "arr2.length" genera problemas preguntar al maestro
+        for(int i = 0; i < arr2.length -1; i++){
+            System.out.println("arr2[i]" + arr2[i]);
+            arr[i] = Integer.parseInt(arr2[i]);
+        }
+        radixx(arr);
+    }
     public void radixx(int[] arr){
         
         int n = arr.length, i, j, temp=0, valor=0;

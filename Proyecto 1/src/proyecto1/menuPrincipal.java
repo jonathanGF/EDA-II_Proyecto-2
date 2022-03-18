@@ -4,6 +4,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     public menuPrincipal() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -27,6 +28,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         B_MEquilibrada.setText("Mezcla E.");
 
         B_Radix.setText("Radix");
+        B_Radix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_RadixActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Seleciona el algoritmo de ordenamiento que deseas realizar");
 
@@ -68,6 +74,12 @@ public class menuPrincipal extends javax.swing.JFrame {
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_B_PolifaseActionPerformed
+
+    private void B_RadixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_RadixActionPerformed
+        Radix radix = new Radix();
+        radix.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_B_RadixActionPerformed
 
     public static void main(String args[]) {
         
