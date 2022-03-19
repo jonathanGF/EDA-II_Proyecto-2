@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Ficheros {
-    
+    String textoArchivo="";
     public String Read(String direccion){
         
         String text = "";
@@ -16,11 +16,17 @@ public class Ficheros {
                 temp = temp + read + "\n";
             }
             text = temp;
-            
+            textoArchivo=text;
         }catch(Exception e){
             System.err.println("Dirección invalida");
         }
-        
+     
         return text;
+    } 
+
+    public String getTextoArchivo() {
+        return textoArchivo;
     }
+    
+    
 }
