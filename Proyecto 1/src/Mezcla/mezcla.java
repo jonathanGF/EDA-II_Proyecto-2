@@ -108,6 +108,7 @@ public class mezcla extends javax.swing.JFrame {
             //Si la variable booleana conservo su valor original de true, desplegar un mensaje
             if (estaOrdenado) {
                 System.out.println("EL ARCHIVO ESTA ORDENADO");
+                System.out.println(actual);
             }
 
         } catch (FileNotFoundException e) {

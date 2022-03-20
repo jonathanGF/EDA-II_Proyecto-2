@@ -1,5 +1,5 @@
 package Mezcla;
-
+/** https://github.com/antonio-cortes-perez/tipsparaisc/blob/master/algoritmos/ordenamiento/MezclaNaturalEjemplo3.java */
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +8,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+
+/*
+* Este .java sirve para abrir un archivo y verificar si esta ordenado o no
+* si esta ordenado regresa una leyenda de ordenado sin mas
+* si no lo esta empieza hacer fusiones y las va poniendo en la pantalla
+*
+* */
 
 
 public class mezcla1<T extends Comparable<T>> {
@@ -57,6 +64,7 @@ public class mezcla1<T extends Comparable<T>> {
                 //Condicion: Si el dato anterior es lexicograficamente mayor al actual
                 if (anterior.compareTo(actual) > 0) {
                     System.out.println("Error en el ordenamiento");
+                    System.out.println(actual);
                     //Actualizacion de la variable booleana que indica el estado del archivo
                     estaOrdenado = false;
                     //Interrupcion del ciclo
@@ -67,6 +75,7 @@ public class mezcla1<T extends Comparable<T>> {
             //Si la variable booleana conservo su valor original de true, desplegar un mensaje
             if (estaOrdenado) {
                 System.out.println("EL ARCHIVO ESTA ORDENADO");
+                System.out.println();
             }
 
         }
@@ -268,7 +277,11 @@ public class mezcla1<T extends Comparable<T>> {
                 // Imprime el numero de particiones-fusiones que le llevo a los
                 // metodos de particion y fusion el ordenar el archivo
                 System.out.println("Fusion " + ++index);
+
                 fusion(entrada, temp1, temp2);
+                /** No se como mostrar las iteraciones que va haciendo en este caso solo muestra donde se estan guardando
+                 * si pongo entrada.length me muestra unos numeros extraños por lo demas sirve bien.*/
+                System.out.println(entrada);
             }
         } finally {
             if (temp1 != null) temp1.delete();
