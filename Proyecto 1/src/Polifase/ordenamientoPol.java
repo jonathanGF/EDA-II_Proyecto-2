@@ -1,18 +1,33 @@
 
 package Polifase;
 import java.io.*;
+import java.util.Arrays;
 import proyecto1.*;
 
 public class ordenamientoPol extends Polifase{
-    String direccion;
-    public void textoPol(String direccion){
+    
+    public void textoPol(String texto){
         
-        File prueba=new File(direccion);
-        this.direccion=prueba.getAbsolutePath();
-        System.out.println(this.direccion);
+       String arrNombres[]=texto.split(",");
+       int arrNumeros[]=new int[arrNombres.length];
+        for (int i = 0; i < arrNombres.length-1; i++) {
+            arrNumeros[i]=Integer.parseInt(arrNombres[i]);
+        }
+        
+        BubbleSort orden=new BubbleSort();
+        int[] arregloordenado;
+        arregloordenado = orden.bubbleSort(arrNumeros);
+        System.out.println(Arrays.toString(arregloordenado));
+        }   
+      
     }
+    
+    
+    
+    
+    
 
-  }
+  
 
     
     
