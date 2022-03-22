@@ -13,7 +13,6 @@ import java.util.function.Function;
 * Este .java sirve para abrir un archivo y verificar si esta ordenado o no
 * si esta ordenado regresa una leyenda de ordenado sin mas
 * si no lo esta empieza hacer fusiones y las va poniendo en la pantalla
-
 * */
 
 
