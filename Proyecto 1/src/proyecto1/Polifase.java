@@ -1,13 +1,13 @@
 
 package proyecto1;
-
+import Polifase.ordenamientoPol;
 public class Polifase extends javax.swing.JFrame {
     String textoObtenido;
     Ficheros fichero = new Ficheros();
     public Polifase() {
         initComponents();
     }
-
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -88,16 +88,14 @@ public class Polifase extends javax.swing.JFrame {
                     .addComponent(U_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(B_Ordenar)
-                            .addComponent(ObTexto))
-                        .addContainerGap(37, Short.MAX_VALUE))))
+                            .addComponent(ObTexto))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,13 +119,16 @@ public class Polifase extends javax.swing.JFrame {
     private void ObTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObTextoActionPerformed
             String direccion = U_Direccion.getText();
             String texto = fichero.Read(direccion);
-            this.textoObtenido=texto;
             TextoArchivo.setText(texto);
+            textoObtenido=direccion;
+            ordenamientoPol obDireccion=new ordenamientoPol();
+            obDireccion.textoPol(direccion);
     }//GEN-LAST:event_ObTextoActionPerformed
 
     public String getTextoObtenido() {
         return textoObtenido;
     }
+
     
     public static void main(String args[]) {
         

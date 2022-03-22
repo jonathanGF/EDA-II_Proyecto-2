@@ -18,7 +18,7 @@ public class Ficheros {
             text = temp;
             textoArchivo=text;
         }catch(Exception e){
-            System.err.println("Dirección invalida");
+            System.err.println(e);
         }
      
         return text;

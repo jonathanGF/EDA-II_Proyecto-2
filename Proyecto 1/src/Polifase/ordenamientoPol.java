@@ -4,23 +4,16 @@ import java.io.*;
 import proyecto1.*;
 
 public class ordenamientoPol extends Polifase{
-    
-    public ordenamientoPol(String archivo) {
+    String direccion;
+    public void textoPol(String direccion){
         
-       String text = "";
-        try{
-            BufferedReader bf = new BufferedReader(new FileReader(archivo));
-            String temp = "", read;
-            while((read = bf.readLine()) != null){
-                temp = temp + read + "\n";
-            }
-            text = temp;
-        }catch(IOException e){
-            System.err.println("Dirección invalida");
-        }
-        
+        File prueba=new File(direccion);
+        this.direccion=prueba.getAbsolutePath();
+        System.out.println(this.direccion);
     }
 
+  }
+
     
     
     
@@ -29,4 +22,4 @@ public class ordenamientoPol extends Polifase{
     
     
     
-}
+
