@@ -24,9 +24,5 @@ public class Ficheros {
         return text;
     } 
 
-    public String getTextoArchivo() {
-        return textoArchivo;
-    }
-    
     
 }
