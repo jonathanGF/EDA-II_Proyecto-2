@@ -122,7 +122,7 @@ public class Polifase extends javax.swing.JFrame {
             TextoArchivo.setText(texto);
             textoObtenido=direccion;
             ordenamientoPol obDireccion=new ordenamientoPol();
-            obDireccion.textoPol(texto);
+            obDireccion.fase1(texto);
     }//GEN-LAST:event_ObTextoActionPerformed
 
     public String getTextoObtenido() {

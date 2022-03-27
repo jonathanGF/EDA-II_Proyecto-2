@@ -2,31 +2,30 @@
 package Polifase;
 import java.io.*;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import proyecto1.*;
 
 public class ordenamientoPol extends Polifase{
-    
-    public void textoPol(String texto){
-        
+    List<String[]> f0=new LinkedList<>();
+    public void fase1(String texto){
+       
        String arrNombres[]=texto.split(",");
        int arrNumeros[]=new int[arrNombres.length];
         for (int i = 0; i < arrNombres.length-1; i++) {
             arrNumeros[i]=Integer.parseInt(arrNombres[i]);
         }
-        
-        BubbleSort orden=new BubbleSort();
-        int[] arregloordenado;
-        arregloordenado = orden.bubbleSort(arrNumeros);
-        System.out.println(Arrays.toString(arregloordenado));
         }
+    
+    
     
     public void intercalacion(int aux1[], int aux2[]){//Primera implememtacion aun falta cabiarlo para strigs
         int i,j,k;
         
-        int arregloFinal[]=new int[aux1.length+aux2.length];
+        int arregloFinal[ ]=new int[aux1.length+aux2.length];
         
         for(i=j=k=0;i<aux1.length && j<aux2.length;k++){
-            if(aux1[i]<aux2[j]){
+            if(aux1[i]>aux2[j]){
                 arregloFinal[k]=aux1[i];
                 i++;
             }else{
