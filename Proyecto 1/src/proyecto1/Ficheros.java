@@ -3,9 +3,10 @@ package proyecto1;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class Ficheros {
-    String textoArchivo="";
+   
     public String Read(String direccion){
         
         String text = "";
@@ -16,8 +17,7 @@ public class Ficheros {
                 temp = temp + read + "\n";
             }
             text = temp;
-            textoArchivo=text;
-        }catch(Exception e){
+        }catch(IOException e){
             System.err.println(e);
         }
      
