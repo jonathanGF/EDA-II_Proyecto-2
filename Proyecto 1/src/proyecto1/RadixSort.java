@@ -49,7 +49,7 @@ public class RadixSort {
             valor = posicion(key, temp);
             switch (valor) {
                 case 0:
-                    q1[c0] = arr[i];
+                    q0[c0] = arr[i];
                     c0 += 1;
                     break;
                 case 1:
@@ -154,7 +154,7 @@ public class RadixSort {
             }
         }
         
-        System.out.println("iteracion 1");
+        System.out.println("iteracion");
         System.out.println("Colas auxiliares:");
         System.out.println("q0=");
         printArrayint(q0);
@@ -189,7 +189,7 @@ public class RadixSort {
         cero(q7);
         cero(q8);
         cero(q9);
-        c1=c2=c3=c4=c5=cx=0;
+        //c1=c2=c3=c4=c5=c6=c7=c8=c9=cx=0;
     }
     public int posicion (int key, int tempV){
         
@@ -213,7 +213,7 @@ public class RadixSort {
     }
     public  void printArrayint(int arr[]) {
         int n = arr.length;
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n-1; ++i) {
             System.out.print(arr[i] + " ");
         }
         System.out.println();

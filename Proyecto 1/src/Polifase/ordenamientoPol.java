@@ -20,6 +20,26 @@ public class ordenamientoPol extends Polifase{
         System.out.println(Arrays.toString(arregloordenado));
         }
     
+    public void polifase(int []arr){
+        int aux1[], aux2[], n= arr.length;
+        int i,j;
+        
+        aux1 = new int[n/2];
+        aux2 = new int[n/2];
+        j=0;
+        for(i=0; i<n; i++){
+            aux1[i]=arr[j];
+            aux1[i]=arr[j+1];
+            aux1[i]=arr[j+2];
+            aux1[i]=arr[j+3];
+            aux2[i]=arr[j+4];
+            aux2[i]=arr[j+5];
+            aux2[i]=arr[j+6];
+            aux2[i]=arr[j+7];
+            j = j + 2;
+        }
+    }
+    // 11,2,3,4,5,6,7,8,9,0
     public void intercalacion(int aux1[], int aux2[]){//Primera implememtacion aun falta cabiarlo para strigs
         int i,j,k;
         
