@@ -7,7 +7,6 @@ import java.util.List;
 import proyecto1.*;
 
 public class ordenamientoPol extends Polifase{
-    List<String[]> f0 = new LinkedList<>();
 
     public void fase1(String texto) {
 
