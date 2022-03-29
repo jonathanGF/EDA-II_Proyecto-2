@@ -1,3 +1,3 @@
-Omar, Chavez Romeo,
-Juan, Gomez Gomez,
-Oscar, Turron Fitch,
+Omar,Chavez Romeo
+Juan, Gomez Gomez
+Oscar, Turron Fitch
