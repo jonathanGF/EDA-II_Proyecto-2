@@ -6,8 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 import proyecto1.*;
 
-public class ordenamientoPol extends Polifase{
-
+public class ordenamientoPol{
+    int aux1[][] = new int [2][4], aux2[][] = new int[2][4];
+    
+    Ficheros f = new Ficheros();
+    
     public void fase1(String texto) {
 
         String arrNombres[] = texto.split(",");
@@ -15,8 +18,16 @@ public class ordenamientoPol extends Polifase{
         for (int i = 0; i < arrNombres.length - 1; i++) {
             arrNumeros[i] = Integer.parseInt(arrNombres[i]);
         }
+        bloques(arrNumeros, aux1, aux2);
+        System.out.println("aux1");
+        f.printArray(aux1);
+        
+        System.out.println("aux2");
+        f.printArray(aux2);
     }
-    int aux1[][], aux2[][];
+    //0,0,0,0,0
+    //0,0,0,0,0
+    //0,0,0,0,0
     
     public void bloques(int arrNumeros[], int aux1[][], int aux2[][]){
         
@@ -25,9 +36,11 @@ public class ordenamientoPol extends Polifase{
         for(int i = 0; i< arrNumeros.length; i++){
             cont ++;
             if(z== true){
-                aux1[x][i] = arrNumeros[i];
-            }else{
-                aux2[y][i] = arrNumeros[i];
+                aux1[x][cont - 1] = arrNumeros[i];
+            }
+            if(z == false){
+                aux2[y][cont - 5] = arrNumeros[i];
+                System.out.println("aux222");
             }
             
             if(cont == 4){

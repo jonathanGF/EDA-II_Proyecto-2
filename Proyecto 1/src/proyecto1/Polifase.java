@@ -2,8 +2,9 @@
 package proyecto1;
 import Polifase.ordenamientoPol;
 public class Polifase extends javax.swing.JFrame {
-    String textoObtenido;
+    String textoObtenido, texto;
     Ficheros fichero = new Ficheros();
+    ordenamientoPol polifase=new ordenamientoPol();
     public Polifase() {
         initComponents();
     }
@@ -109,6 +110,8 @@ public class Polifase extends javax.swing.JFrame {
             U_Direccion.setText("");
             TextoArchivo.setText("");
             
+                    
+            
             
     }//GEN-LAST:event_B_OrdenarActionPerformed
 
@@ -118,11 +121,11 @@ public class Polifase extends javax.swing.JFrame {
 
     private void ObTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObTextoActionPerformed
             String direccion = U_Direccion.getText();
-            String texto = fichero.Read(direccion);
+            texto = fichero.Read(direccion);
             TextoArchivo.setText(texto);
             textoObtenido=direccion;
-            ordenamientoPol obDireccion=new ordenamientoPol();
-            obDireccion.fase1(texto);
+            
+            polifase.fase1(texto);
     }//GEN-LAST:event_ObTextoActionPerformed
 
     public String getTextoObtenido() {

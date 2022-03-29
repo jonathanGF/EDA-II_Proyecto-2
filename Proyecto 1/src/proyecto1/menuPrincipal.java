@@ -96,7 +96,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonPolifaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonPolifaseMouseClicked
-       Polifase p = new Polifase();
+        Polifase p = new Polifase();
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BotonPolifaseMouseClicked
