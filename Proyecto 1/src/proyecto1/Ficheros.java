@@ -28,9 +28,16 @@ public class Ficheros {
         
         for(int i = 0; i < arr.length; i++){
             for(int j = 0; j < arr[i].length; j++){
-                System.out.print(arr[i][j]);
+                System.out.print(arr[i][j] + ",");
             }
             System.out.println("\n");
+        }
+    }
+    
+    public void igualar(int arrx[], int aux3[][], int indice){
+        
+        for(int i = 0; i < arrx.length; i++){
+            aux3[indice][i]= arrx[i];
         }
     }
 }
