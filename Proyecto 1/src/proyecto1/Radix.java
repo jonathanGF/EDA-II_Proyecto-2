@@ -1,6 +1,10 @@
 
 package proyecto1;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Radix extends javax.swing.JFrame {
     
     
@@ -51,7 +55,7 @@ public class Radix extends javax.swing.JFrame {
         TA_Panel.setRows(5);
         jScrollPane1.setViewportView(TA_Panel);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 166, 550, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 520, 120));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
@@ -90,7 +94,11 @@ public class Radix extends javax.swing.JFrame {
         String texto = fichero.Read(direccion);
         
         System.out.println(texto);
-        rS.radixString(texto);
+        try {
+            rS.radixString(texto);
+        } catch (IOException ex) {
+            Logger.getLogger(Radix.class.getName()).log(Level.SEVERE, null, ex);
+        }
         TA_Panel.setText(texto);
         Txt_Direccion.setText("");
     }//GEN-LAST:event_B_OrdenarActionPerformed

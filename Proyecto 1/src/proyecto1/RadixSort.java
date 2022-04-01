@@ -1,11 +1,19 @@
 
 package proyecto1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
+
 public class RadixSort {
-    public void radixString(String texto){
+    
+    public void radixString(String texto) throws IOException{
         
         String arr2[] = texto.split(",");
         int arr[] = new int [arr2.length];
+       String arregloFinal[] = new String[arr.length];
         
         //Aun no arreglar
         System.out.println("text" +  texto);
@@ -16,6 +24,33 @@ public class RadixSort {
             arr[i] = Integer.parseInt(arr2[i]);
         }
         radixx(arr);
+        for (int i = 0; i < arr.length; i++) {
+            arregloFinal[i]=Integer.toString(arr[i]);
+        }
+        
+        
+        
+        File ultimoArch=new File("ResultadoRadix");
+        PrintWriter escribir;
+        if (!ultimoArch.exists()) {
+            ultimoArch.createNewFile();
+        try {
+           
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        }else{
+            try {
+               escribir=new PrintWriter("ResultadoRadix.txt");
+                for (int i = 0; i < arr.length; i++) {
+                    escribir.write(arregloFinal[i]+",");
+                }
+               escribir.close();
+            } catch (FileNotFoundException e) {
+                System.out.println(e);
+            }
+            
+        }
     }
     public void radixx(int[] arr){
         
@@ -177,7 +212,7 @@ public class RadixSort {
         System.out.println("q9=");
         printArrayint(q9);
         System.out.println("Arreglo=");
-        printArrayint(arr);
+        printArrayint(arr);       
         //reiniciar variables
         cero(q0);
         cero(q1);
@@ -191,6 +226,7 @@ public class RadixSort {
         cero(q9);
         //c1=c2=c3=c4=c5=c6=c7=c8=c9=cx=0;
     }
+    
     public int posicion (int key, int tempV){
         
         int res = 0;
