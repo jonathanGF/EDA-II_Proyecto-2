@@ -81,7 +81,6 @@ public class ordenamientoPol{
         System.out.println("Inicio del for");
         for(int i = 0; i < aux1[0].length;i++){
             int arrx[] = intercalacion(aux1[i], aux2[i]);
-            System.out.println("AYUDA");
             f.igualar(arrx, aux3, i);
         }
         f.printArray(aux3);
