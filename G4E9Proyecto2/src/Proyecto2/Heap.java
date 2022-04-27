@@ -4,6 +4,9 @@
  */
 package Proyecto2;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  *
  * @author ADMIN
@@ -29,5 +32,32 @@ public class Heap {
         }else{
             padre.setDer(hijo);
         }
+    }
+    
+    public void breadthFrist(){
+        Nodo r = raiz;
+	Queue<Nodo> queue = new LinkedList();
+	if(r!=null){
+            queue.add(r);
+            while(!queue.isEmpty()){
+                r = (Nodo)queue.poll();
+		visitados(r);
+		if(r.izq!=null)
+                    queue.add(r.izq);
+		if(r.der!=null)
+		queue.add(r.der);
+            }
+	}
+    }
+    
+    protected void visitados(Nodo n){
+        System.out.println(n.valor+" ");
+    }
+    
+    public boolean veri(){
+        if(raiz==null){
+            return true;
+        }
+        return false;
     }
 }

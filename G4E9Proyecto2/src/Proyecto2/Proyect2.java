@@ -8,38 +8,38 @@ public class Proyect2 {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner n =new Scanner(System.in);
-        int op,first=0;
+        int op,lado=0,lastnumber=0;
         ArrayList<Integer> list=new ArrayList();
         ArrayList<Nodo> ot=new ArrayList();
-        Heap h=new Heap();
+        Heap h = new Heap();
         Nodo nod;
         do{
-            System.out.println("¿Que deseas hacer?"
+            System.out.print("¿Que deseas hacer?"
                     + "\n  1.-Ingresar clave."
                     + "\n   2.-Eliminar calve."
                     + "\n    3.-Mostrar árbol."
-                    + "\n     0.-Salir");
+                    + "\n     0.-Salir"
+                    + "\n Op: ");
             op=n.nextInt();
             switch(op){
                 case 1://agregar clave
-                    /*System.out.println("¿Cuantos nodos deseas realizar?");
-                    System.out.print("Numnodos: ");
-                    numnodos=n.nextInt();
-                    int lado=0;*/
-                    /*
-                    for(int i=0;i<numnodos;i++){
-                        System.out.println("Ingresa el numero a añadir: ");
-                        list.add(n.nextInt());
+                    /*if(first==0){
+                        System.out.println("Ingresa tres numeros para crear el arbol: ");
+                        for(int i=0;i<3;i++){
+                            System.out.print("Ingresa numero: ");
+                            list.add(n.nextInt());
+                            nod= new Nodo(list.get(first));
+                            ot.add(nod);
+                            first++;
+                        }
+                        h = new Heap(ot.get(0));
+                        h.añadir(ot.get(0), ot.get(1), 0);
+                        h.añadir(ot.get(0), ot.get(2), 1);
                     }
-                    for(int j=0;j<list.size();j++){
-                        nod=new Nodo(list.get(j));
-                        ot.add(nod);
-                    }*/
-                    System.out.println("Ingresa el numero a añadir: ");
-                    list.add(n.nextInt());//recibo el numero
-                    nod= new Nodo(list.get(first));//se hace nodo el numero de la lista
-                    ot.add(nod);//se añade el nodo a otra lista de nodos
-                    if(first==0){
+                    //list.add(n.nextInt());//recibo el numero
+                    //nod= new Nodo(list.get(first));//se hace nodo el numero de la lista
+                    //ot.add(nod);//se añade el nodo a otra lista de nodos
+                    /*if(first==0){
                         h= new Heap(ot.get(first));//se crea la raiz con el primer nodo
                         first++;
                     }
@@ -47,13 +47,33 @@ public class Proyect2 {
                         h.añadir(ot.get(ot.size() / 2), ot.get(first), 0);//se añade lado izquierdo
                     }else{
                         h.añadir(ot.get(ot.size() / 2), ot.get(first), 1);//se añade lado derecho
-                    }
-                    
+                    }*/
+                    System.out.print("Ingresa numero: ");
+                    if(h.veri()==true){
+                        nod = new Nodo(n.nextInt());
+                        ot.add(nod);lastnumber++;
+                        h = new Heap(nod);
+                    }else{
+                        if(lado==0){
+                            nod = new Nodo(n.nextInt());
+                            ot.add(nod);
+                            h.añadir(ot.get(ot.size()/2), nod, lado);
+                            lastnumber++;lado++;
+                        }else{
+                            nod = new Nodo(n.nextInt());
+                            ot.add(nod);
+                            h.añadir(ot.get(ot.size()/2), ot.get(lastnumber), lado);
+                            lastnumber++;lado--;
+                        }
+                    }                  
                     break;
                 case 2://eliminar raiz
                     break;
                 case 3://mostrar arbol
-                    System.out.println(ot);
+                    h.breadthFrist();
+                    break;
+                case 0:
+                    System.out.println("Hasta la proxima");
                     break;
                 default:
                     System.out.println("Opcion invalida.");
