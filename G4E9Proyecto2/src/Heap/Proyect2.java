@@ -1,5 +1,6 @@
-package Proyecto2;
+package Heap;
 
+import NODO.Nodo;
 import java.util.*;
 
 public class Proyect2 {

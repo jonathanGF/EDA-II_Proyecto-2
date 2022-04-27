@@ -1,5 +1,5 @@
 
-package Proyecto2;
+package NODO;
 
 /**
  *
@@ -7,9 +7,9 @@ package Proyecto2;
  */
 public class Nodo {
         
-    int valor;
-    Nodo izq = null;
-    Nodo der = null;
+    public int valor;
+    public Nodo izq = null;
+    public Nodo der = null;
     
     public Nodo(){
         izq=der=null;//al crear un nodo tanto su sub arbol izquierdo como el derecho son nulos
