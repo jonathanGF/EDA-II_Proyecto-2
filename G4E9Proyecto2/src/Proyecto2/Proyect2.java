@@ -57,12 +57,12 @@ public class Proyect2 {
                         if(lado==0){
                             nod = new Nodo(n.nextInt());
                             ot.add(nod);
-                            h.añadir(ot.get(ot.size()/2), nod, lado);
+                            h.añadir(ot.get((ot.size()/2)-1), nod, lado);
                             lastnumber++;lado++;
                         }else{
                             nod = new Nodo(n.nextInt());
                             ot.add(nod);
-                            h.añadir(ot.get(ot.size()/2), ot.get(lastnumber), lado);
+                            h.añadir(ot.get((ot.size()/2)-1), ot.get(lastnumber), lado);
                             lastnumber++;lado--;
                         }
                     }                  
