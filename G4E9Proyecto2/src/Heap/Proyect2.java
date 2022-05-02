@@ -30,14 +30,16 @@ public class Proyect2 {
                         lnodo.add(nod);lastnumber++;//se agrega a lista de nodos y se aumenta el ultimo numero
                         h = new Heap(nod);//se crea un arbol con raiz del nodo
                     }else{
+                        nod = new Nodo(n.nextInt());//se pide otro numero para hacerlo nodo
+                        lnodo.add(nod);//se añade a la lista de nodos
+                        if(nod.valor>h.raiz.valor){
+                            h=acomodo(h, h.raiz);
+                        }
+                        
                         if(lado==0){//si lado es cero
-                            nod = new Nodo(n.nextInt());//se pide otro numero para hacerlo nodo
-                            lnodo.add(nod);//se añade a la lista de nodos
                             h.añadir(lnodo.get((lnodo.size()/2)-1), nod, lado);//y se añade a su respectivo padre de lado izquierdo
                             lastnumber++;lado++;//se incrementa el tamaño de los ultimos numeros y para cambiar de lado
                         }else{
-                            nod = new Nodo(n.nextInt());//se pide otro numero para hacerlo nodo
-                            lnodo.add(nod);//se añade a la lista de nodos
                             h.añadir(lnodo.get((lnodo.size()/2)-1), nod, lado);//se añade este ultimo nodo a su padre pero del lado derecho
                             lastnumber++;lado--;//se incrementa ultimo numero y se disminuye para cambiar el lado despues
                         }
