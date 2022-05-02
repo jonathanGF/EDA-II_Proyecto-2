@@ -23,8 +23,8 @@ public class Heap {
         this.raiz=raiz;
     }
     
-    public void añadir(Nodo padre, Nodo hijo, int lado){
-        if(lado==0){
+    public void añadir(Nodo padre, Nodo hijo){
+        if(padre.izq==null){
             padre.setIzq(hijo);
         }else{
             padre.setDer(hijo);

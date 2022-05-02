@@ -32,19 +32,24 @@ public class Proyect2 {
                     }else{
                         nod = new Nodo(n.nextInt());//se pide otro numero para hacerlo nodo
                         lnodo.add(nod);//se añade a la lista de nodos
-                        if(nod.valor>h.raiz.valor){
-                            h=acomodo(h, h.raiz);
+                        if(mayoromenor(h.raiz,nod)==true){
+                            h=acomodo(h,h.raiz,nod);
+                        }else{
+                            
                         }
-                        
+                        /*if(nod.valor>h.raiz.valor){
+                            h=acomodo(h, h.raiz,nod);
+                        }
+                        /*
                         if(lado==0){//si lado es cero
                             h.añadir(lnodo.get((lnodo.size()/2)-1), nod, lado);//y se añade a su respectivo padre de lado izquierdo
                             lastnumber++;lado++;//se incrementa el tamaño de los ultimos numeros y para cambiar de lado
                         }else{
                             h.añadir(lnodo.get((lnodo.size()/2)-1), nod, lado);//se añade este ultimo nodo a su padre pero del lado derecho
                             lastnumber++;lado--;//se incrementa ultimo numero y se disminuye para cambiar el lado despues
-                        }
+                        }*/
                     }
-                    h=acomodo(h,lnodo.get(0));
+                    //h=acomodo(h,lnodo.get(0));
                     break;
                 case 2://eliminar raiz
                     break;
@@ -61,9 +66,35 @@ public class Proyect2 {
         }while(op!=0);
     }
     
-    private static Heap acomodo(Heap h,Nodo padre){
-        Nodo aux1,aux2;
-        if(padre==h.raiz){
+    private static boolean mayoromenor(Nodo padre,Nodo hijo){
+        if(padre.valor<hijo.valor){
+            return true;
+        }
+        return false;
+    }
+    
+    private static Heap acomodo(Heap h,Nodo padre,Nodo hijo){
+        Nodo aux1,aux2,aux3;
+        aux1=padre;
+        aux2=padre.izq;
+        aux3=padre.der;
+        
+        if(padre.izq!=null && padre.der==null){
+            padre.setIzq(null);
+            padre=hijo;
+            h.añadir(padre, aux1);
+        }else{
+            padre.setIzq(null);
+            padre=hijo;
+            h.añadir(padre, aux2);
+            h.añadir(padre, aux1);
+        }
+        if(mayoromenor(padre.izq,hijo)){
+            h=acomodo(h,padre.izq,hijo);
+        }else if(mayoromenor(padre.der,hijo)){
+            h=acomodo(h,padre.der,hijo);
+        }
+        /*if(padre==h.raiz){
             if (padre.izq != null && padre.der == null) {
                 if (padre.valor < padre.izq.valor) {
                     aux1=padre.izq;
@@ -102,7 +133,7 @@ public class Proyect2 {
         }else{
             
         }
-        
+        */
         return h;
     }
 }
