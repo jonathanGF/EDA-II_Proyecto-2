@@ -85,14 +85,19 @@ public class Heap {
     }
     
     public void añadir(Nodo padre, Nodo hijo){
-        if(padre.izq==null && padre.der==null){
-            padre.setIzq(hijo);
-        }else if(padre.izq==null && padre.der!=null){
-            padre.setIzq(hijo);
-        }else if(padre.izq!=null && padre.der==null){
-            padre.setDer(hijo);
+        
+        if(padre.valor > hijo.valor){
+            if (padre.izq == null && padre.der == null) {
+                padre.setIzq(hijo);
+            } else if (padre.izq == null && padre.der != null) {
+                padre.setIzq(hijo);
+            } else if (padre.izq != null && padre.der == null) {
+                padre.setDer(hijo);
+            } else {
+                añadir(padre.izq, hijo);
+            }
         }else{
-            añadir(padre.izq,hijo);
+            
         }
     }
     
@@ -159,7 +164,7 @@ public class Heap {
             if (mayoromenor(padre, hijo) == true) {
                 if (padre == h.raiz) {
                     if (padre.izq == null && padre.der == null) {
-                        h = new Heap(hijo);
+                        /*padre*/h = new Heap(hijo);
                         h.añadir(hijo, padre);
                     } else if (padre.izq != null && padre.der == null) {
                         padre.setIzq(null);

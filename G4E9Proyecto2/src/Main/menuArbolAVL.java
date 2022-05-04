@@ -1,7 +1,7 @@
 
 package Main;
 
-import ArbolesAVL.ArbolAVL;
+import ArbolesAVL.*;
 import java.util.Scanner;
 
 public class menuArbolAVL {
