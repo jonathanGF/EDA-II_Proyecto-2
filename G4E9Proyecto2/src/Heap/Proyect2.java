@@ -90,6 +90,7 @@ public class Proyect2 {
                         h.añadir(hijo, padre);
                     } else if (padre.izq != null && padre.der == null) {
                         padre.setIzq(null);
+                        //root = nuevo;
                         h = new Heap(hijo);
                         h.añadir(hijo, aux2);
                         h.añadir(hijo, padre);
