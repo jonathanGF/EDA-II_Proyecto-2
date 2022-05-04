@@ -14,7 +14,8 @@ public class Principal {
             switch(op){
                 case 1:
                     System.out.println("Arboles AVL");
-                            
+                    menuArbolAVL arbolAVL = new menuArbolAVL();
+                    arbolAVL.menuAVL();
                     
                     break;
                 case 2:
