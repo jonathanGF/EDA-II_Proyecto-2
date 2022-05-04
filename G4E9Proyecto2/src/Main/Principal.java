@@ -2,6 +2,7 @@
 package Main;
 
 import java.util.Scanner;
+import Heap.Heap;
 
 public class Principal {
     public static void main(String[] args) {
@@ -20,7 +21,7 @@ public class Principal {
                     break;
                 case 2:
                     System.out.println("Heap");
-                   
+                    
                     break;
                 case 3:
                     System.out.println("Arbol de expresion aritmetica");

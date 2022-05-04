@@ -8,7 +8,21 @@ package ArbolEA;
  *
  * @author jonat
  */
-public class GenerarArbol {
+public class ApPilaArbol {
+    Nodos numero;
+    ApPilaArbol apSiguiente;
+
+    public ApPilaArbol(Nodos numero) {
+        this.numero=numero;
+        apSiguiente=null;
+        
+    }
+    
+    
+    
+    
+    
+    
     
     
 }
