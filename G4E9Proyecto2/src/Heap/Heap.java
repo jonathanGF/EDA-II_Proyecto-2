@@ -87,10 +87,13 @@ public class Heap {
         if(padre.valor>hijo.valor){
             if (padre.izq == null && padre.der == null) {
                 padre.setIzq(hijo);
+                message(padre,hijo);
             } else if (padre.izq == null && padre.der != null) {
                 padre.setIzq(hijo);
+                message(padre,hijo);
             } else if (padre.izq != null && padre.der == null) {
                 padre.setDer(hijo);
+                message(padre,hijo);
             } else {
                 añadir(padre.izq, hijo);
             }
@@ -152,15 +155,20 @@ public class Heap {
     }*/
     
     private void acomodo(Nodo padre,Nodo hijo){
-        Nodo tempr,tempIzq,tempDer;
+        Nodo tempr,tempIzq,tempDer,tempIIzq,tempIDer,tempDIzq,tempDDer;
         tempr=padre;
         tempIzq=padre.izq;
         tempDer=padre.der;
+        tempIIzq=padre.izq.izq;
+        tempIDer=padre.izq.der;
+        tempDIzq=padre.der.izq;
+        tempDDer=padre.der.der;
         
         if(padre!=null && hijo!=null){
             if (padre.izq == null && padre.der == null) {
                 padre = hijo;
                 añadir(padre, tempr);
+                añadir(padre, tempDer);
             } else if (padre.izq != null && padre.der == null) {
                 padre.setIzq(null);
                 padre = hijo;
@@ -179,6 +187,12 @@ public class Heap {
                 añadir(padre, tempDer);
                 añadir(padre.izq, tempIzq);
             }
+        }
+    }
+    
+    public void message(Nodo padre,Nodo hijo){
+        if(padre.izq==hijo || padre.der==hijo){
+            System.out.println("Se añadio correctamente");
         }
     }
 }
