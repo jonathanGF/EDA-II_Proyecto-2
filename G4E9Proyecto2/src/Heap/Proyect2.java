@@ -77,28 +77,28 @@ public class Proyect2 {
     }
     
     private static Heap acomodo(Heap h,Nodo padre,Nodo hijo){
-        Nodo aux1,aux2,aux3,ult;
-        aux1= new Nodo(padre.valor);
-        aux2=padre.izq;
-        aux3=padre.der;
+        Nodo tempr,tempIzq,tempDer,ult;
+        tempr=padre;
+        tempIzq=padre.izq;
+        tempDer=padre.der;
         
         if(padre!=null && hijo!=null){
             if (mayoromenor(padre, hijo) == true) {
-                if (padre == h.raiz) {
+                /*if (padre == h.raiz) {
                     if (padre.izq == null && padre.der == null) {
                         h = new Heap(hijo);
                         h.añadir(hijo, padre);
                     } else if (padre.izq != null && padre.der == null) {
                         padre.setIzq(null);
                         h = new Heap(hijo);
-                        h.añadir(hijo, aux2);
+                        h.añadir(hijo, tempIzq);
                         h.añadir(hijo, padre);
                     }
                 } else {
                     if (padre.izq == null && padre.der == null) {
                         padre = hijo;
-                        padre.setIzq(aux1);
-                        padre.setDer(aux3);
+                        padre.setIzq(tempr);
+                        padre.setDer(tempDer);
                     } else if (padre.izq != null && padre.der == null) {
                         padre.setIzq(null);
                         padre = hijo;
@@ -107,7 +107,7 @@ public class Proyect2 {
                     }
                 }
                 h = recu(h, padre.izq, hijo);
-                h = recu(h, padre.der, hijo);
+                h = recu(h, padre.der, hijo);*/
             } else {
                 ult = fondo(h, h.raiz);
                 h.añadir(ult, hijo);
