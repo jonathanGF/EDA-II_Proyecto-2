@@ -24,10 +24,10 @@ public class Heap {
     }
     
     public void añadir(Nodo padre, Nodo hijo){
-        if(padre.izq==null){
-            padre.setIzq(hijo);
-        }else{
+        if(padre.izq!=null){
             padre.setDer(hijo);
+        }else{
+            padre.setIzq(hijo);
         }
     }
     

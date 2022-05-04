@@ -33,9 +33,10 @@ public class Proyect2 {
                         nod = new Nodo(n.nextInt());//se pide otro numero para hacerlo nodo
                         lnodo.add(nod);//se añade a la lista de nodos
                         if(mayoromenor(h.raiz,nod)==true){
-                            h=acomodo(h,h.raiz,nod);
+                            h=acomodo(h,h.raiz,nod);//todo funciona bien
                         }else{
-                            last=fondo(h,h.raiz);
+                            last= new Nodo(fondo(h,h.raiz).valor);
+                            System.out.println("Ultimo nodo: "+last.valor);
                             h.añadir(last, nod);
                         }
                         //h=acomodo(h,h.raiz,nod);
@@ -74,7 +75,7 @@ public class Proyect2 {
     
     private static Heap acomodo(Heap h,Nodo padre,Nodo hijo){
         Nodo aux1,aux2,aux3,ult;
-        aux1=padre;
+        aux1= new Nodo(padre.valor);
         aux2=padre.izq;
         aux3=padre.der;
         
@@ -91,12 +92,12 @@ public class Proyect2 {
                 }
             }else{
                 if (padre.izq == null && padre.der == null) {
-                    padre=hijo;
+                    padre =new Nodo(hijo.valor);
                     padre.setIzq(aux1);
                     padre.setDer(aux3);
                 }else if(padre.izq!=null && padre.der==null){
                     padre.setIzq(null);
-                    padre=hijo;
+                    padre=new Nodo(hijo.valor);
                     h.añadir(padre, aux2);
                     h.añadir(padre, aux1);
                 }
@@ -123,9 +124,10 @@ public class Proyect2 {
         if(padre.izq!=null && padre.der!=null){
             x= fondo(h,padre.der);
         }else if(padre.izq!=null && padre.der==null){
-            x= fondo(h,padre.izq);
+            x= padre;
+        }else{
+            x=padre;
         }
-        x=padre;
         return x;
     }
 }
