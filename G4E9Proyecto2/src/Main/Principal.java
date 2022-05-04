@@ -7,7 +7,7 @@ public class Principal {
     public static void main(String[] args) {
                 Scanner sc = new Scanner (System.in);
         int op;
-        System.out.println("Archivos :D");
+        System.out.println("Árboles :D");
         do{
             System.out.println("\n1.Arboles AVL\n2.Heap\n3.Arbol expresion aritmetica\n4.Salir\n");
             op=sc.nextInt();

@@ -32,14 +32,14 @@ public class Proyect2 {
                     }else{
                         nod = new Nodo(n.nextInt());//se pide otro numero para hacerlo nodo
                         lnodo.add(nod);//se añade a la lista de nodos
-                        if(mayoromenor(h.raiz,nod)==true){
+                        /*if(mayoromenor(h.raiz,nod)==true){
                             h=acomodo(h,h.raiz,nod);//todo funciona bien
                         }else{
                             last= new Nodo(fondo(h,h.raiz).valor);
                             System.out.println("Ultimo nodo: "+last.valor);
                             h.añadir(last, nod);
-                        }
-                        //h=acomodo(h,h.raiz,nod);
+                        }*/
+                        h=acomodo(h,h.raiz,nod);
                         /*if(nod.valor>h.raiz.valor){
                             h=acomodo(h, h.raiz,nod);
                         }
@@ -70,7 +70,10 @@ public class Proyect2 {
     }
     
     private static boolean mayoromenor(Nodo padre,Nodo hijo){
-        return padre.valor<hijo.valor;
+        if(padre.valor<hijo.valor){
+            return true;
+        }
+        return false;
     }
     
     private static Heap acomodo(Heap h,Nodo padre,Nodo hijo){
@@ -79,36 +82,37 @@ public class Proyect2 {
         aux2=padre.izq;
         aux3=padre.der;
         
-        //if(mayoromenor(padre,hijo)==true){
-            if (padre == h.raiz) {
-                if (padre.izq == null && padre.der == null) {
-                    h = new Heap(hijo);
-                    h.añadir(hijo, padre);
-                } else if (padre.izq != null && padre.der == null) {
-                    padre.setIzq(null);
-                    h = new Heap(hijo);
-                    h.añadir(hijo, aux2);
-                    h.añadir(hijo, padre);
+        if(padre!=null && hijo!=null){
+            if (mayoromenor(padre, hijo) == true) {
+                if (padre == h.raiz) {
+                    if (padre.izq == null && padre.der == null) {
+                        h = new Heap(hijo);
+                        h.añadir(hijo, padre);
+                    } else if (padre.izq != null && padre.der == null) {
+                        padre.setIzq(null);
+                        h = new Heap(hijo);
+                        h.añadir(hijo, aux2);
+                        h.añadir(hijo, padre);
+                    }
+                } else {
+                    if (padre.izq == null && padre.der == null) {
+                        padre = hijo;
+                        padre.setIzq(aux1);
+                        padre.setDer(aux3);
+                    } else if (padre.izq != null && padre.der == null) {
+                        padre.setIzq(null);
+                        padre = hijo;
+                        h.añadir(padre, aux2);
+                        h.añadir(padre, aux1);
+                    }
                 }
-            }else{
-                if (padre.izq == null && padre.der == null) {
-                    padre =new Nodo(hijo.valor);
-                    padre.setIzq(aux1);
-                    padre.setDer(aux3);
-                }else if(padre.izq!=null && padre.der==null){
-                    padre.setIzq(null);
-                    padre=new Nodo(hijo.valor);
-                    h.añadir(padre, aux2);
-                    h.añadir(padre, aux1);
-                }
+                h = recu(h, padre.izq, hijo);
+                h = recu(h, padre.der, hijo);
+            } else {
+                ult = fondo(h, h.raiz);
+                h.añadir(ult, hijo);
             }
-            //h=recu(h,padre.izq,hijo);
-            //h=recu(h,padre.der,hijo);
-        /*}else{
-            ult=fondo(h,h.raiz);
-            h.añadir(ult, hijo);
-        }*/
-        
+        }
         return h;
     }
     
@@ -128,6 +132,7 @@ public class Proyect2 {
         }else{
             x=padre;
         }
+        System.out.println("Ultimo nodo: "+x.valor);
         return x;
     }
 }
