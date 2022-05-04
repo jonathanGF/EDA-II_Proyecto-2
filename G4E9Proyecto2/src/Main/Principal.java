@@ -21,7 +21,8 @@ public class Principal {
                     break;
                 case 2:
                     System.out.println("Heap");
-                    
+                    Heap arbolheap = new Heap();
+                    arbolheap.menuH();
                     break;
                 case 3:
                     System.out.println("Arbol de expresion aritmetica");
