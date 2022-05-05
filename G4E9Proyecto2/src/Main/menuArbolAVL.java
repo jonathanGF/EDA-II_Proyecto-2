@@ -1,7 +1,7 @@
 
 package Main;
 
-import ArbolesAVL.ArbolAVL;
+import ArbolesAVL.*;
 import java.util.Scanner;
 
 public class menuArbolAVL {
@@ -37,7 +37,7 @@ public class menuArbolAVL {
                     break;
                 
                 case 4:
-                    arbol.preOrden(arbol.root);
+                    //arbol.breadthFrist();
                     break;
             }
 
