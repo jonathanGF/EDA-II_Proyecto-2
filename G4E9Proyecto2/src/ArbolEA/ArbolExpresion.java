@@ -97,7 +97,7 @@ public class ArbolExpresion {
                 p=10;
                 break;
             default:
-                p=0;
+                p=0;//parentesis
         }
         return p;
     }
