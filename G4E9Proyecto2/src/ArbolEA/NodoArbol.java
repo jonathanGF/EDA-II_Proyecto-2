@@ -8,8 +8,14 @@ package ArbolEA;
  *
  * @author jonat
  */
-public class pruebas {
-    public static void main(String[] args) {
-        
+public class NodoArbol {
+    Object dato;
+    NodoArbol izquierdo;
+    NodoArbol derecho;
+    
+    public NodoArbol(Object x){
+        dato=x;
+        izquierdo = null;
+        derecho = null;
     }
 }

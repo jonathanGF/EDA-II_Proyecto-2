@@ -66,6 +66,16 @@ public class Heap {
     }
     
     public void añadir(Nodo padre, Nodo hijo){
+<<<<<<< HEAD
+        
+        if(padre.valor > hijo.valor){
+            if (padre.izq == null && padre.der == null) {
+                padre.setIzq(hijo);
+            } else if (padre.izq == null && padre.der != null) {
+                padre.setIzq(hijo);
+            } else if (padre.izq != null && padre.der == null) {
+                padre.setDer(hijo);
+=======
         if(padre.valor>hijo.valor){
             if (padre.izq == null && padre.der == null) {
                 padre.setIzq(hijo);
@@ -76,11 +86,16 @@ public class Heap {
             } else if (padre.izq != null && padre.der == null) {
                 padre.setDer(hijo);
                 message(padre,hijo);
+>>>>>>> ce0572913b262a7d90beba2152b97161d7225e00
             } else {
                 añadir(padre.izq, hijo);
             }
         }else{
+<<<<<<< HEAD
+            
+=======
             acomodo(padre,hijo);
+>>>>>>> ce0572913b262a7d90beba2152b97161d7225e00
         }
     }
     
@@ -118,6 +133,20 @@ public class Heap {
         tempDer=padre.der;
         
         if(padre!=null && hijo!=null){
+<<<<<<< HEAD
+            if (mayoromenor(padre, hijo) == true) {
+                if (padre == h.raiz) {
+                    if (padre.izq == null && padre.der == null) {
+                        /*padre*/h = new Heap(hijo);
+                        h.añadir(hijo, padre);
+                    } else if (padre.izq != null && padre.der == null) {
+                        padre.setIzq(null);
+                        h = new Heap(hijo);
+                        h.añadir(hijo, tempIzq);
+                        h.añadir(hijo, padre);
+                    }
+                }
+=======
             if (padre.izq == null && padre.der == null) {
                 padre.valor = hijo.valor;
                 añadir(padre, tempr=new Nodo(r));
@@ -132,6 +161,7 @@ public class Heap {
                 padre.valor = hijo.valor;
                 añadir(padre, tempr=new Nodo(r));
                 añadir(padre, tempDer);
+>>>>>>> ce0572913b262a7d90beba2152b97161d7225e00
             } else {
                 padre.setIzq(null);
                 padre.setDer(null);

@@ -1,8 +1,13 @@
 
 package ArbolesAVL;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ArbolAVL {
     public NodoAVL root;
+    public NodoAVL list[];
+    public int cont = 0;
     
     public ArbolAVL(){
         root = null;
@@ -19,6 +24,10 @@ public class ArbolAVL {
             return e.fE;
         }
               
+    }
+    
+    public NodoAVL getNodo(int i){
+        return list[i - 1];
     }
     //Insertar
     public NodoAVL addAVL(NodoAVL nuevo, NodoAVL sub){
@@ -65,12 +74,18 @@ public class ArbolAVL {
     
     public void insertar(int dato){
         NodoAVL nuevo = new NodoAVL(dato);
-        
+        list[dato - 1] = nuevo;
+        cont ++;
         if(root == null){
             root = nuevo;
         }else{
             root = addAVL(nuevo, root);
         }
+    }
+    
+    public void delete(int dato){
+       NodoAVL nuevo;
+       nuevo = list[dato - 1];
     }
     
     
@@ -113,6 +128,25 @@ public class ArbolAVL {
             preOrden(x.izq);
             preOrden(x.der);
         }
+    }
+    
+    protected void visit(NodoAVL n){
+        System.out.print(n.dato+", ");
+    }	
+    public void breadthFrist(){
+        NodoAVL r = root;
+	Queue<NodoAVL> queue = new LinkedList();
+	if(r!=null){
+            queue.add(r);
+            while(!queue.isEmpty()){
+                r = (NodoAVL)queue.poll();
+		visit(r);
+		if(r.izq!=null)
+                    queue.add(r.izq);
+		if(r.der!=null)
+		queue.add(r.der);
+            }
+	}
     }
     
 }
