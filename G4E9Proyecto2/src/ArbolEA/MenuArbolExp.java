@@ -1,29 +1,37 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package ArbolEA;
 
-package Main;
 
+import Main.menuArbolAVL;
 import java.util.Scanner;
-import ArbolEA.MenuArbolExp;
-public class Principal {
-    public static void main(String[] args) {
-                Scanner sc = new Scanner (System.in);
-        int op;
-        System.out.println("Árboles :D");
+
+/**
+ *
+ * @author jonat
+ */
+public class MenuArbolExp {
+   
+    
+    Scanner teclado = new Scanner(System.in);
+    int opcion;
+    
+    public void menuArbolEx(){
         do{
             System.out.println("\n1.Arboles AVL\n2.Heap\n3.Arbol expresion aritmetica\n4.Salir\n");
-            op=sc.nextInt();
-            switch(op){
+            opcion=teclado.nextInt();
+            switch(opcion){
                 case 1:
-                    System.out.println("Arboles AVL");
-                    menuArbolAVL arbolAVL = new menuArbolAVL();
-                    arbolAVL.menuAVL();
+                    
                     
                     break;
                 case 2:
-                    System.out.println("Heap");
                     
                     break;
                 case 3:
-                    System.out.println("Arbol de expresion aritmetica");
+                    
                    
                     
                     break;
@@ -32,11 +40,17 @@ public class Principal {
                     
                     break;
                 default:
-                    if (op>4 || op <1){
+                    if (opcion>4 || opcion <1){
                         System.out.println("Opción inválida.");
                     }
                     break;
             }
-        }while(op!=4);
+        }while(opcion!=4);
+        
+        
+    
+        
+    
     }
+    
 }
