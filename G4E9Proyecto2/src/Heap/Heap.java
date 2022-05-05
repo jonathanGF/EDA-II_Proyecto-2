@@ -224,7 +224,21 @@ public class Heap {
                 }
             }else{
                 if(aux.izq.valor==x){
-                    
+                    if(aux.izq.izq==null && aux.izq.der==null){
+                        aux.izq.setIzq(null);
+                    }else if(aux.izq.izq!=null && aux.izq.der==null){
+                        Nodo hhi = lnodo.get(lnodo.indexOf(aux.izq.izq));
+                        aux.izq.izq.setIzq(null);
+                        aux.izq.setIzq(null);
+                        añadir(aux,hhi);
+                    }else if(aux.izq.izq==null && aux.izq.der!=null){
+                        Nodo hhd = lnodo.get(lnodo.indexOf(aux.izq.der));
+                        aux.izq.der.setDer(null);
+                        aux.izq.setDer(null);
+                        añadir(aux,hhd);
+                    }else{
+                        
+                    }
                 }else{
                     
                 }
