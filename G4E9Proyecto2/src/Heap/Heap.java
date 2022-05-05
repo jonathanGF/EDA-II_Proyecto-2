@@ -52,6 +52,8 @@ public class Heap {
                     }
                     break;
                 case 2://eliminar raiz
+                    System.out.print("Dame el número a eliminar: ");
+                    delete(n.nextInt());
                     break;
                 case 3://mostrar arbol
                     breadthFrist();
@@ -119,10 +121,6 @@ public class Heap {
         int r=padre.valor;
         tempIzq=padre.izq;
         tempDer=padre.der;
-        /*tempIIzq=padre.izq.izq;
-        tempIDer=padre.izq.der;
-        tempDIzq=padre.der.izq;
-        tempDDer=padre.der.der;*/
         
         if(padre!=null && hijo!=null){
             if(padre.izq==null && padre.der==null){
@@ -225,24 +223,75 @@ public class Heap {
             }else{
                 if(aux.izq.valor==x){
                     if(aux.izq.izq==null && aux.izq.der==null){
-                        aux.izq.setIzq(null);
+                        aux.setIzq(null);
                     }else if(aux.izq.izq!=null && aux.izq.der==null){
                         Nodo hhi = lnodo.get(lnodo.indexOf(aux.izq.izq));
-                        aux.izq.izq.setIzq(null);
                         aux.izq.setIzq(null);
+                        aux.setIzq(null);
                         añadir(aux,hhi);
                     }else if(aux.izq.izq==null && aux.izq.der!=null){
                         Nodo hhd = lnodo.get(lnodo.indexOf(aux.izq.der));
-                        aux.izq.der.setDer(null);
                         aux.izq.setDer(null);
+                        aux.setDer(null);
                         añadir(aux,hhd);
                     }else{
-                        
+                        if(aux.izq.izq.valor>aux.izq.der.valor){
+                            Nodo hhi,hhd;
+                            hhi = lnodo.get(lnodo.indexOf(aux.izq.izq));
+                            hhd = lnodo.get(lnodo.indexOf(aux.izq.der));
+                            aux.izq.setIzq(null);
+                            aux.izq.setDer(null);
+                            aux.setIzq(null);
+                            añadir(aux,hhi);
+                            añadir(hhi,hhd);
+                        }else{
+                            Nodo hhi,hhd;
+                            hhi = lnodo.get(lnodo.indexOf(aux.izq.izq));
+                            hhd = lnodo.get(lnodo.indexOf(aux.izq.der));
+                            aux.der.setIzq(null);
+                            aux.der.setDer(null);
+                            aux.setDer(null);
+                            añadir(aux,hhi);
+                            añadir(hhi,hhd);
+                        }
                     }
                 }else{
-                    
+                    if(aux.der.izq==null && aux.der.der==null){
+                        aux.setDer(null);
+                    }else if(aux.der.izq!=null && aux.der.der==null){
+                        Nodo hhi = lnodo.get(lnodo.indexOf(aux.der.izq));
+                        aux.der.setIzq(null);
+                        aux.setDer(null);
+                        añadir(aux,hhi);
+                    }else if(aux.izq.izq==null && aux.izq.der!=null){
+                        Nodo hhd = lnodo.get(lnodo.indexOf(aux.der.der));
+                        aux.der.setDer(null);
+                        aux.setDer(null);
+                        añadir(aux,hhd);
+                    }else{
+                        if(aux.der.izq.valor>aux.der.der.valor){
+                            Nodo hhi,hhd;
+                            hhi = lnodo.get(lnodo.indexOf(aux.izq.izq));
+                            hhd = lnodo.get(lnodo.indexOf(aux.izq.der));
+                            aux.der.setIzq(null);
+                            aux.der.setDer(null);
+                            aux.setIzq(null);
+                            añadir(aux,hhi);
+                            añadir(hhi,hhd);
+                        }else{
+                            Nodo hhi,hhd;
+                            hhi = lnodo.get(lnodo.indexOf(aux.izq.izq));
+                            hhd = lnodo.get(lnodo.indexOf(aux.izq.der));
+                            aux.der.setIzq(null);
+                            aux.der.setDer(null);
+                            aux.setDer(null);
+                            añadir(aux,hhi);
+                            añadir(hhi,hhd);
+                        }
+                    }
                 }
             }
+            lnodo.remove(lnodo.indexOf(x));
         }else{
             System.out.println("No se encontro el nodo a eliminar");
         }
