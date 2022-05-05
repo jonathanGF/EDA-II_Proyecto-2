@@ -34,7 +34,8 @@ public class Principal {
                     break;
                 case 3:
                     System.out.println("Arbol de expresion aritmetica");
-                   
+                   MenuArbolExp inicioMenu=new MenuArbolExp();
+                   inicioMenu.menuArbolEx();
                     
                     break;
                 case 4:
