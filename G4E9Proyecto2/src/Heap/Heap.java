@@ -67,21 +67,23 @@ public class Heap {
     }
     
     public void añadir(Nodo padre, Nodo hijo){
-        if(padre.valor>hijo.valor){
-            if (padre.izq == null && padre.der == null) {
-                padre.setIzq(hijo);
-                message(padre,hijo);
-            } else if (padre.izq == null && padre.der != null) {
-                padre.setIzq(hijo);
-                message(padre,hijo);
-            } else if (padre.izq != null && padre.der == null) {
-                padre.setDer(hijo);
-                message(padre,hijo);
+        if(hijo!=null){
+            if (padre.valor > hijo.valor) {
+                if (padre.izq == null && padre.der == null) {
+                    padre.setIzq(hijo);
+                    message(padre, hijo);
+                } else if (padre.izq == null && padre.der != null) {
+                    padre.setIzq(hijo);
+                    message(padre, hijo);
+                } else if (padre.izq != null && padre.der == null) {
+                    padre.setDer(hijo);
+                    message(padre, hijo);
+                } else {
+                    añadir(padre.izq, hijo);
+                }
             } else {
-                añadir(padre.izq, hijo);
+                acomodo(padre, hijo);
             }
-        }else{
-            acomodo(padre,hijo);
         }
     }
     
@@ -152,4 +154,107 @@ public class Heap {
             System.out.println("Se añadio correctamente");
         }
     }
+    
+    public void delete(int x){
+        Nodo aux=buscar(x,raiz);
+        if(aux!=null){
+            if (raiz.valor == x) {
+                Nodo tempIzq = lnodo.get(lnodo.indexOf(raiz.izq));
+                Nodo tempDer = lnodo.get(lnodo.indexOf(raiz.der));
+                if (raiz.izq == null && raiz.der == null) {
+                    raiz = null;
+                } else if (raiz.izq != null && raiz.der == null) {
+                    raiz.setIzq(null);
+                    raiz = tempIzq;
+                } else if (raiz.izq == null && raiz.der != null) {
+                    raiz.setDer(null);
+                    raiz = tempDer;
+                } else {
+                    if (raiz.izq.valor > raiz.der.valor) {
+                        raiz.setIzq(null);
+                        raiz.setDer(null);
+                        if (tempIzq.izq == null && tempIzq.der == null) {
+                            raiz = tempIzq;
+                            añadir(raiz, tempDer);
+                        } else if (tempIzq.izq != null && tempIzq.der == null) {
+                            raiz = tempIzq;
+                            añadir(raiz, tempDer);
+                        } else if (tempIzq.izq == null && tempIzq.der != null) {
+                            Nodo hijoDer = lnodo.get(lnodo.indexOf(tempIzq.izq));
+                            tempIzq.setDer(null);
+                            raiz = tempIzq;
+                            añadir(raiz, hijoDer);
+                            añadir(raiz, tempDer);
+                        } else {
+                            Nodo hijoIzq = lnodo.get(lnodo.indexOf(tempIzq.izq));
+                            Nodo hijoDer = lnodo.get(lnodo.indexOf(tempIzq.der));
+                            tempIzq.setIzq(null);
+                            tempIzq.setDer(null);
+                            raiz = tempIzq;
+                            añadir(raiz, hijoIzq);
+                            añadir(raiz, tempDer);
+                            añadir(hijoIzq, hijoDer);
+                        }
+                    }else{
+                        raiz.setIzq(null);
+                        raiz.setDer(null);
+                        if (tempDer.izq == null && tempDer.der == null) {
+                            raiz = tempDer;
+                            añadir(raiz, tempIzq);
+                        } else if (tempDer.izq != null && tempDer.der == null) {
+                            Nodo hijoIzq=lnodo.get(lnodo.indexOf(tempDer.izq));
+                            tempDer.setIzq(null);
+                            raiz = tempDer;
+                            añadir(raiz, tempIzq);
+                            añadir(raiz,hijoIzq);
+                        } else if (tempIzq.izq == null && tempIzq.der != null) {
+                            raiz = tempDer;
+                            añadir(raiz, tempIzq);
+                        } else {
+                            Nodo hijoIzq = lnodo.get(lnodo.indexOf(tempDer.izq));
+                            Nodo hijoDer = lnodo.get(lnodo.indexOf(tempDer.der));
+                            tempDer.setIzq(null);
+                            tempDer.setDer(null);
+                            raiz = tempDer;
+                            añadir(raiz, tempDer);
+                            añadir(raiz, hijoIzq);
+                            añadir(hijoIzq, hijoDer);
+                        }
+                    }
+                }
+            }else{
+                if(aux.izq.valor==x){
+                    
+                }else{
+                    
+                }
+            }
+        }else{
+            System.out.println("No se encontro el nodo a eliminar");
+        }
+    }
+    
+    public Nodo buscar(int x,Nodo padre){
+        Nodo apoyo=null;
+        if(padre.izq!=null || padre.der!=null){
+            if (padre.izq.valor == x) {
+                apoyo = padre;
+            } else if (padre.der.valor == x) {
+                apoyo = padre;
+            } else {
+                if (padre.izq.valor > x && padre.der.valor > x) {
+                    apoyo = buscar(x, padre.izq);
+                    if (apoyo == null) {
+                        apoyo = buscar(x, padre.der);
+                    }
+                } else if (padre.izq.valor < x && padre.der.valor > x) {
+                    apoyo = buscar(x, padre.der);
+                } else if (padre.izq.valor > x && padre.der.valor < x) {
+                    apoyo = buscar(x, padre.izq);
+                }
+            }
+        }
+        return apoyo;
+    }
+    
 }
