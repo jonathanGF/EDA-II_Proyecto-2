@@ -2,7 +2,11 @@
 package Main;
 
 import java.util.Scanner;
+
+import ArbolEA.MenuArbolExp;
+
 import Heap.Heap;
+
 
 public class Principal {
     public static void main(String[] args) {
@@ -21,11 +25,18 @@ public class Principal {
                     break;
                 case 2:
                     System.out.println("Heap");
+
                     
+
+                    Heap arbolheap = new Heap();
+                    arbolheap.menuH();
+
                     break;
                 case 3:
                     System.out.println("Arbol de expresion aritmetica");
-                   
+                   MenuArbolExp inicioMenu=new MenuArbolExp();
+                   inicioMenu.menuArbolEx();
+                    
                     break;
                 case 4:
                     System.out.println("Salir");

@@ -37,7 +37,7 @@ public class menuArbolAVL {
                     break;
                 
                 case 4:
-                    arbol.preOrden(arbol.root);
+                    //arbol.breadthFrist();
                     break;
             }
 

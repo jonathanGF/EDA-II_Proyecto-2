@@ -34,7 +34,7 @@ public class Heap {
                     + "\n  1.-Ingresar clave."
                     + "\n   2.-Eliminar calve."
                     + "\n    3.-Mostrar árbol."
-                    + "\n     0.-Salir"
+                    + "\n     0.-Regresar"
                     + "\n Op: ");
             op=n.nextInt();
             switch(op){
@@ -46,7 +46,6 @@ public class Heap {
                         //se crea un arbol con raiz del nodo
                     }else{
                         nod = new Nodo(n.nextInt());//se pide otro numero para hacerlo nodo
-                        lnodo.add(nod);//se añade a la lista de nodos
                         /*if(mayoromenor(h.raiz,nod)==true){
                             h=acomodo(h,h.raiz,nod);//todo funciona bien
                         }else{
@@ -54,7 +53,7 @@ public class Heap {
                             System.out.println("Ultimo nodo: "+last.valor);
                             h.añadir(last, nod);
                         }*/
-                        h=acomodo(h,raiz,nod);
+                        añadir(raiz,nod);
                         /*if(nod.valor>h.raiz.valor){
                             h=acomodo(h, h.raiz,nod);
                         }
@@ -72,7 +71,7 @@ public class Heap {
                 case 2://eliminar raiz
                     break;
                 case 3://mostrar arbol
-                    h.breadthFrist();
+                    breadthFrist();
                     break;
                 case 0:
                     System.out.println("Hasta la proxima");
@@ -85,6 +84,7 @@ public class Heap {
     }
     
     public void añadir(Nodo padre, Nodo hijo){
+<<<<<<< HEAD
         
         if(padre.valor > hijo.valor){
             if (padre.izq == null && padre.der == null) {
@@ -93,11 +93,27 @@ public class Heap {
                 padre.setIzq(hijo);
             } else if (padre.izq != null && padre.der == null) {
                 padre.setDer(hijo);
+=======
+        if(padre.valor>hijo.valor){
+            if (padre.izq == null && padre.der == null) {
+                padre.setIzq(hijo);
+                message(padre,hijo);
+            } else if (padre.izq == null && padre.der != null) {
+                padre.setIzq(hijo);
+                message(padre,hijo);
+            } else if (padre.izq != null && padre.der == null) {
+                padre.setDer(hijo);
+                message(padre,hijo);
+>>>>>>> ce0572913b262a7d90beba2152b97161d7225e00
             } else {
                 añadir(padre.izq, hijo);
             }
         }else{
+<<<<<<< HEAD
             
+=======
+            acomodo(padre,hijo);
+>>>>>>> ce0572913b262a7d90beba2152b97161d7225e00
         }
     }
     
@@ -127,14 +143,14 @@ public class Heap {
         }
         return false;
     }
-    private Heap recu(Heap h,Nodo padre, Nodo hijo){
+    /*private Heap recu(Heap h,Nodo padre, Nodo hijo){
         if(mayoromenor(padre,hijo)==true){
             h=acomodo(h,padre,hijo);
         }
         return h;
-    }
+    }*/
     
-    private Nodo fondo(Heap h,Nodo padre){
+    /*private Nodo fondo(Heap h,Nodo padre){
         Nodo x;
         if(padre.izq!=null && padre.der!=null){
             x= fondo(h,padre.der);
@@ -143,24 +159,28 @@ public class Heap {
         }else{
             x=padre;
         }
-        System.out.println("Ultimo nodo: "+x.valor);
         return x;
-    }
+    }*/
     
-    private boolean mayoromenor(Nodo padre,Nodo hijo){
+    /*private boolean mayoromenor(Nodo padre,Nodo hijo){
         if(padre.valor<hijo.valor){
             return true;
         }
         return false;
-    }
+    }*/
     
-    private Heap acomodo(Heap h,Nodo padre,Nodo hijo){
-        Nodo tempr,tempIzq,tempDer,ult;
+    private void acomodo(Nodo padre,Nodo hijo){
+        Nodo tempr,tempIzq,tempDer,tempIIzq,tempIDer,tempDIzq,tempDDer;
         tempr=padre;
         tempIzq=padre.izq;
         tempDer=padre.der;
+        tempIIzq=padre.izq.izq;
+        tempIDer=padre.izq.der;
+        tempDIzq=padre.der.izq;
+        tempDDer=padre.der.der;
         
         if(padre!=null && hijo!=null){
+<<<<<<< HEAD
             if (mayoromenor(padre, hijo) == true) {
                 if (padre == h.raiz) {
                     if (padre.izq == null && padre.der == null) {
@@ -173,11 +193,36 @@ public class Heap {
                         h.añadir(hijo, padre);
                     }
                 }
+=======
+            if (padre.izq == null && padre.der == null) {
+                padre = hijo;
+                añadir(padre, tempr);
+                añadir(padre, tempDer);
+            } else if (padre.izq != null && padre.der == null) {
+                padre.setIzq(null);
+                padre = hijo;
+                añadir(padre, tempIzq);
+                añadir(padre, tempr);
+            } else if (padre.izq == null && padre.izq == null) {
+                padre.setDer(null);
+                padre = hijo;
+                añadir(padre, tempr);
+                añadir(padre, tempDer);
+>>>>>>> ce0572913b262a7d90beba2152b97161d7225e00
             } else {
-                ult = fondo(h, h.raiz);
-                h.añadir(ult, hijo);
+                padre.setIzq(null);
+                padre.setDer(null);
+                padre = hijo;
+                añadir(padre, tempr);
+                añadir(padre, tempDer);
+                añadir(padre.izq, tempIzq);
             }
         }
-        return h;
+    }
+    
+    public void message(Nodo padre,Nodo hijo){
+        if(padre.izq==hijo || padre.der==hijo){
+            System.out.println("Se añadio correctamente");
+        }
     }
 }
