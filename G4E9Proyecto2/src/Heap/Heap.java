@@ -154,7 +154,8 @@ public class Heap {
     }
     
     public void delete(int x){
-        Nodo aux=buscar(x,raiz);
+        Nodo buscado=new Nodo(x);
+        Nodo aux=buscar(buscado,raiz);
         
             if (raiz.valor == x) {
                 if (raiz.izq == null && raiz.der == null) {
@@ -302,37 +303,37 @@ public class Heap {
         }
     }
     
-    public Nodo buscar(int x,Nodo padre){
+    public Nodo buscar(Nodo x,Nodo padre){
         Nodo apoyo=null;
         if(padre.izq!=null && padre.der!=null){
-            if (padre.izq.valor == x) {
+            if (padre.izq == x) {
                 apoyo = padre;
-            } else if (padre.der.valor == x) {
+            } else if (padre.der == x) {
                 apoyo = padre;
             } else {
-                if (padre.izq.valor > x && padre.der.valor > x) {
+                if (padre.izq.valor > x.valor && padre.der.valor > x.valor) {
                     apoyo = buscar(x, padre.izq);
                     if (apoyo == null) {
                         apoyo = buscar(x, padre.der);
                     }
-                } else if (padre.izq.valor < x && padre.der.valor > x) {
+                } else if (padre.izq.valor < x.valor && padre.der.valor > x.valor) {
                     apoyo = buscar(x, padre.der);
-                } else if (padre.izq.valor > x && padre.der.valor < x) {
+                } else if (padre.izq.valor > x.valor && padre.der.valor < x.valor) {
                     apoyo = buscar(x, padre.izq);
                 }
             }
         }else if(padre.izq!=null && padre.der==null){
-            if (padre.izq.valor == x) {
+            if (padre.izq== x) {
                 apoyo = padre;
             }else{
-                if(padre.izq.valor>x){
+                if(padre.izq.valor>x.valor){
                     apoyo=buscar(x,padre.izq);
                 }
             }
         }else if(padre.izq==null && padre.der!=null){
-            if(padre.der.valor==x){
+            if(padre.der==x){
                 apoyo=padre;
-            }else if(padre.der.valor>x){
+            }else if(padre.der.valor>x.valor){
                 apoyo=buscar(x,padre.der);
             }
         }else {
