@@ -330,8 +330,8 @@ public class Heap {
             }else if(padre.der.valor>x){
                 apoyo=buscar(x,padre.der);
             }
-        }else if(padre.izq!=null && padre.der==null){
-            
+        }else {
+            apoyo= padre;
         }
         return apoyo;
     }
