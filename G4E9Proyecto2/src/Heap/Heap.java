@@ -299,7 +299,7 @@ public class Heap {
     
     public Nodo buscar(int x,Nodo padre){
         Nodo apoyo=null;
-        if(padre.izq!=null || padre.der!=null){
+        if(padre.izq!=null && padre.der!=null){
             if (padre.izq.valor == x) {
                 apoyo = padre;
             } else if (padre.der.valor == x) {
@@ -316,6 +316,22 @@ public class Heap {
                     apoyo = buscar(x, padre.izq);
                 }
             }
+        }else if(padre.izq!=null && padre.der==null){
+            if (padre.izq.valor == x) {
+                apoyo = padre;
+            }else{
+                if(padre.izq.valor>x){
+                    apoyo=buscar(x,padre.izq);
+                }
+            }
+        }else if(padre.izq==null && padre.der!=null){
+            if(padre.der.valor==x){
+                apoyo=padre;
+            }else if(padre.der.valor>x){
+                apoyo=buscar(x,padre.der);
+            }
+        }else if(padre.izq!=null && padre.der==null){
+            
         }
         return apoyo;
     }
