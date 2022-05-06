@@ -6,7 +6,6 @@ import java.util.Queue;
 
 public class ArbolAVL {
     public NodoAVL root;
-    public NodoAVL list[];
     public int cont = 0;
     
     public ArbolAVL(){
@@ -24,10 +23,6 @@ public class ArbolAVL {
             return e.fE;
         }
               
-    }
-    
-    public NodoAVL getNodo(int i){
-        return list[i - 1];
     }
     //Insertar
     public NodoAVL addAVL(NodoAVL nuevo, NodoAVL sub){
@@ -74,7 +69,7 @@ public class ArbolAVL {
     
     public void insertar(int dato){
         NodoAVL nuevo = new NodoAVL(dato);
-        list[dato - 1] = nuevo;
+        //list[dato - 1] = nuevo;
         cont ++;
         if(root == null){
             root = nuevo;
@@ -83,10 +78,47 @@ public class ArbolAVL {
         }
     }
     
-    public void delete(int dato){
-       NodoAVL nuevo;
-       nuevo = list[dato - 1];
+    public void delete(NodoAVL padre, int lado){
+   
+      if(lado == 0){
+          padre.setIzq(null);
+      }else{
+          padre.setDer(null);
+      }
     }
+    public NodoAVL search(int d, NodoAVL r){
+        if(root == null){
+            return null;
+        }else if(r.dato == d){
+            return r;
+        }else if(r.dato < d){
+            return search2(d,r.der,r);
+        }else{
+            return search2(d,r.izq,r);
+        }
+    }
+    public NodoAVL search2(int d, NodoAVL root, NodoAVL padre){
+        if(root == null){
+            return null;
+        }else if(root.dato == d){
+            int ld = lado(padre, d);
+            return padre;
+            
+        }else if(root.dato < d){
+            return search2(d,root.der,root);
+        }else{
+            return search2(d,root.izq,root);
+        }
+    }
+    
+    public int lado(NodoAVL padre, int d){
+        if(padre.der.dato == d){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    
     
     
     //rotaciones
@@ -129,6 +161,23 @@ public class ArbolAVL {
             preOrden(x.der);
         }
     }
+    public void Prueba(NodoAVL x){
+        if(x != null){
+            System.out.print("Nodo temp: " +x.dato );
+            if(x.der != null){
+                System.out.println("der" + x.der.dato+"\n");
+                
+                
+            }
+            if(x.izq != null){
+                System.out.println("izq" + x.izq.dato+"\n");
+            }
+            System.out.println("\n");
+            Prueba(x.izq);
+            Prueba(x.der);
+        }
+    }
+   
     
     protected void visit(NodoAVL n){
         System.out.print(n.dato+", ");

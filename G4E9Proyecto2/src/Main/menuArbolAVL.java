@@ -36,8 +36,21 @@ public class menuArbolAVL {
                     arbol.insertar(res2);
                     break;
                 
+                case 3:
+                    System.out.println("Ingresa el valor que quieres eliminar:\n");
+                    res2 = teclado.nextInt();
+                    NodoAVL temp = arbol.search(res2, arbol.root);
+                    int lado = arbol.lado(temp, res2);
+                    arbol.delete(temp, lado);
+                    
+                    break;
                 case 4:
-                    //arbol.breadthFrist();
+                    arbol.breadthFrist();
+                    System.out.println("PreOrden");
+                    arbol.preOrden(arbol.root);
+                    System.out.println("Lista:\n");
+                    arbol.Prueba(arbol.root);
+                    
                     break;
             }
 
