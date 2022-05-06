@@ -155,19 +155,22 @@ public class Heap {
     
     public void delete(int x){
         Nodo aux=buscar(x,raiz);
-        if(aux!=null){
+        
             if (raiz.valor == x) {
-                Nodo tempIzq = lnodo.get(lnodo.indexOf(raiz.izq));
-                Nodo tempDer = lnodo.get(lnodo.indexOf(raiz.der));
                 if (raiz.izq == null && raiz.der == null) {
                     raiz = null;
                 } else if (raiz.izq != null && raiz.der == null) {
+                    Nodo tempIzq = lnodo.get(lnodo.indexOf(raiz.izq));
+                
                     raiz.setIzq(null);
                     raiz = tempIzq;
                 } else if (raiz.izq == null && raiz.der != null) {
+                    Nodo tempDer = lnodo.get(lnodo.indexOf(raiz.der));
                     raiz.setDer(null);
                     raiz = tempDer;
                 } else {
+                    Nodo tempIzq = lnodo.get(lnodo.indexOf(raiz.izq));
+                    Nodo tempDer = lnodo.get(lnodo.indexOf(raiz.der));
                     if (raiz.izq.valor > raiz.der.valor) {
                         raiz.setIzq(null);
                         raiz.setDer(null);
@@ -220,7 +223,9 @@ public class Heap {
                         }
                     }
                 }
-            }else{
+            }
+        if(aux!=null){
+            if(raiz.valor!=x){
                 if(aux.izq.valor==x){
                     if(aux.izq.izq==null && aux.izq.der==null){
                         aux.setIzq(null);
