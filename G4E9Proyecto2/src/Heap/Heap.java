@@ -12,22 +12,8 @@ public class Heap {
     Scanner n=new Scanner(System.in);
     ArrayList<Nodo> lnodo=new ArrayList();
     
-    public Heap(){
-        raiz=null;
-    }
-    
-    public Heap(int valor){
-        raiz=new Nodo(valor);
-    }
-    
-    public Heap(Nodo raiz){
-        this.raiz=raiz;
-    }
-    
     public void menuH(){
-        int op,lado=0;
-        ArrayList<Integer> list=new ArrayList();
-        Heap h = new Heap();
+        int op;
         Nodo nod;
         do{
             System.out.print("¿Que deseas hacer?"
@@ -116,7 +102,7 @@ public class Heap {
     }
     
     private void acomodo(Nodo padre,Nodo hijo){
-        Nodo tempr,tempIzq,tempDer,tempIIzq,tempIDer,tempDIzq,tempDDer;
+        Nodo tempr,tempIzq,tempDer;
         int r=padre.valor;
         tempIzq=padre.izq;
         tempDer=padre.der;
@@ -225,7 +211,7 @@ public class Heap {
                 }
             }
         if(aux!=null){
-            if(raiz.valor!=x){
+            
                 if(aux.izq.valor==x){
                     if(aux.izq.izq==null && aux.izq.der==null){
                         aux.setIzq(null);
@@ -295,7 +281,7 @@ public class Heap {
                         }
                     }
                 }
-            }
+            
             //lnodo.remove(lnodo.indexOf(buscado.valor));
         }else{
             System.out.println("No se encontro el nodo a eliminar");
