@@ -48,7 +48,6 @@ public class Heap {
                         nod = new Nodo(n.nextInt());//se pide otro numero para hacerlo nodo
                         lnodo.add(nod);
                         añadir(raiz,nod);
-                        
                     }
                     break;
                 case 2://eliminar raiz
@@ -297,7 +296,7 @@ public class Heap {
                     }
                 }
             }
-            lnodo.remove(lnodo.indexOf(x));
+            //lnodo.remove(lnodo.indexOf(buscado.valor));
         }else{
             System.out.println("No se encontro el nodo a eliminar");
         }
@@ -323,7 +322,7 @@ public class Heap {
                 }
             }
         }else if(padre.izq!=null && padre.der==null){
-            if (padre.izq== x) {
+            if (padre.izq.valor== x.valor) {
                 apoyo = padre;
             }else{
                 if(padre.izq.valor>x.valor){
@@ -331,7 +330,7 @@ public class Heap {
                 }
             }
         }else if(padre.izq==null && padre.der!=null){
-            if(padre.der==x){
+            if(padre.der.valor==x.valor){
                 apoyo=padre;
             }else if(padre.der.valor>x.valor){
                 apoyo=buscar(x,padre.der);
