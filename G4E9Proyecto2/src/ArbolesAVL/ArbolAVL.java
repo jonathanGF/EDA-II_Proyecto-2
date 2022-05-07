@@ -27,6 +27,16 @@ public class ArbolAVL {
 //Funciones
     
     //Insertar
+    public void insertar(int dato) {
+        NodoAVL nuevo = new NodoAVL(dato);
+        //list[dato - 1] = nuevo;
+        cont++;
+        if (root == null) {
+            root = nuevo;
+        } else {
+            root = addAVL(nuevo, root);
+        }
+    }
     public NodoAVL addAVL(NodoAVL nuevo, NodoAVL sub){
         NodoAVL nuevoPadre = sub;
         if(nuevo.dato < sub.dato){
@@ -69,17 +79,8 @@ public class ArbolAVL {
         return nuevoPadre; 
     }
     
-    public void insertar(int dato){
-        NodoAVL nuevo = new NodoAVL(dato);
-        //list[dato - 1] = nuevo;
-        cont ++;
-        if(root == null){
-            root = nuevo;
-        }else{
-            root = addAVL(nuevo, root);
-        }
-    }
-    
+   
+    //delete
     public void delete(NodoAVL padre, int lado){
    
       if(lado == 0){
@@ -156,6 +157,7 @@ public class ArbolAVL {
         return aux;
     }
     
+    //Imprimir Arbol
     public void preOrden(NodoAVL x){
         if(x != null){
             System.out.print(x.dato + ",");
@@ -163,7 +165,7 @@ public class ArbolAVL {
             preOrden(x.der);
         }
     }
-    public void Prueba(NodoAVL x){
+    public void Lista(NodoAVL x){
         if(x != null){
             System.out.print("Nodo temp: " +x.dato );
             if(x.der != null){
@@ -175,15 +177,11 @@ public class ArbolAVL {
                 System.out.println("izq" + x.izq.dato+"\n");
             }
             System.out.println("\n");
-            Prueba(x.izq);
-            Prueba(x.der);
+            Lista(x.izq);
+            Lista(x.der);
         }
     }
    
-    
-    protected void visit(NodoAVL n){
-        System.out.print(n.dato+", ");
-    }	
     public void breadthFrist(){
         NodoAVL r = root;
 	Queue<NodoAVL> queue = new LinkedList();
@@ -200,4 +198,7 @@ public class ArbolAVL {
 	}
     }
     
+    protected void visit(NodoAVL n){
+        System.out.print(n.dato+", ");
+    }	
 }

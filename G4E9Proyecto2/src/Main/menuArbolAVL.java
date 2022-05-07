@@ -58,7 +58,7 @@ public class menuArbolAVL {
                     break;
                 case 6:
                     System.out.println("Lista de adyacencia:\n");
-                    arbol.Prueba(arbol.root);
+                    arbol.Lista(arbol.root);
                     break;
                 case 7:
                     key = false;
