@@ -3,7 +3,7 @@ package ArbolesAVL;
 
 import java.util.LinkedList;
 import java.util.Queue;
-
+//Constructor
 public class ArbolAVL {
     public NodoAVL root;
     public int cont = 0;
@@ -24,6 +24,8 @@ public class ArbolAVL {
         }
               
     }
+//Funciones
+    
     //Insertar
     public NodoAVL addAVL(NodoAVL nuevo, NodoAVL sub){
         NodoAVL nuevoPadre = sub;
@@ -165,7 +167,7 @@ public class ArbolAVL {
         if(x != null){
             System.out.print("Nodo temp: " +x.dato );
             if(x.der != null){
-                System.out.println("der" + x.der.dato+"\n");
+                System.out.println("\nder" + x.der.dato+"\n");
                 
                 
             }

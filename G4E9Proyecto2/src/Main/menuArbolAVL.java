@@ -2,6 +2,7 @@
 package Main;
 
 import ArbolesAVL.*;
+import java.awt.BorderLayout;
 import java.util.Scanner;
 
 public class menuArbolAVL {
@@ -19,7 +20,10 @@ public class menuArbolAVL {
                     + "1)Crear Arbol\n"
                     + "2)Agregar Nodo\n"
                     + "3)Elimnar Nodo\n"
-                    + "4)Recorrido InOrden\n");
+                    + "4)BFS\n"
+                    + "5)recorrido PreOrden\n"
+                    + "6)Lista de Adyacencia\n"
+                    + "7)Terminar\n");
             res = teclado.nextInt();
 
             switch (res) {
@@ -45,13 +49,21 @@ public class menuArbolAVL {
                     
                     break;
                 case 4:
+                    System.out.println("BFS");
                     arbol.breadthFrist();
-                    System.out.println("PreOrden");
-                    arbol.preOrden(arbol.root);
-                    System.out.println("Lista:\n");
-                    arbol.Prueba(arbol.root);
-                    
                     break;
+                case 5:
+                    System.out.println("PreOrden\n");
+                    arbol.preOrden(arbol.root);
+                    break;
+                case 6:
+                    System.out.println("Lista de adyacencia:\n");
+                    arbol.Prueba(arbol.root);
+                    break;
+                case 7:
+                    key = false;
+                    break;
+                
             }
 
         }
