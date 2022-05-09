@@ -3,10 +3,9 @@ package ArbolesAVL;
 
 import java.util.LinkedList;
 import java.util.Queue;
-
+//Constructor
 public class ArbolAVL {
     public NodoAVL root;
-    public NodoAVL list[];
     public int cont = 0;
     
     public ArbolAVL(){
@@ -25,11 +24,19 @@ public class ArbolAVL {
         }
               
     }
+//Funciones
     
-    public NodoAVL getNodo(int i){
-        return list[i - 1];
-    }
     //Insertar
+    public void insertar(int dato) {
+        NodoAVL nuevo = new NodoAVL(dato);
+        //list[dato - 1] = nuevo;
+        cont++;
+        if (root == null) {
+            root = nuevo;
+        } else {
+            root = addAVL(nuevo, root);
+        }
+    }
     public NodoAVL addAVL(NodoAVL nuevo, NodoAVL sub){
         NodoAVL nuevoPadre = sub;
         if(nuevo.dato < sub.dato){
@@ -72,21 +79,49 @@ public class ArbolAVL {
         return nuevoPadre; 
     }
     
-    public void insertar(int dato){
-        NodoAVL nuevo = new NodoAVL(dato);
-        list[dato - 1] = nuevo;
-        cont ++;
+   
+    //delete
+    public void delete(NodoAVL padre, int lado){
+   
+      if(lado == 0){
+          padre.setIzq(null);
+      }else{
+          padre.setDer(null);
+      }
+    }
+    public NodoAVL search(int d, NodoAVL r){
         if(root == null){
-            root = nuevo;
+            return null;
+        }else if(r.dato == d){
+            return r;
+        }else if(r.dato < d){
+            return search2(d,r.der,r);
         }else{
-            root = addAVL(nuevo, root);
+            return search2(d,r.izq,r);
+        }
+    }
+    public NodoAVL search2(int d, NodoAVL root, NodoAVL padre){
+        if(root == null){
+            return null;
+        }else if(root.dato == d){
+            int ld = lado(padre, d);
+            return padre;
+            
+        }else if(root.dato < d){
+            return search2(d,root.der,root);
+        }else{
+            return search2(d,root.izq,root);
         }
     }
     
-    public void delete(int dato){
-       NodoAVL nuevo;
-       nuevo = list[dato - 1];
+    public int lado(NodoAVL padre, int d){
+        if(padre.der.dato == d){
+            return 1;
+        }else{
+            return 0;
+        }
     }
+    
     
     
     //rotaciones
@@ -122,6 +157,7 @@ public class ArbolAVL {
         return aux;
     }
     
+    //Imprimir Arbol
     public void preOrden(NodoAVL x){
         if(x != null){
             System.out.print(x.dato + ",");
@@ -129,10 +165,23 @@ public class ArbolAVL {
             preOrden(x.der);
         }
     }
-    
-    protected void visit(NodoAVL n){
-        System.out.print(n.dato+", ");
-    }	
+    public void Lista(NodoAVL x){
+        if(x != null){
+            System.out.print("Nodo temp: " +x.dato );
+            if(x.der != null){
+                System.out.println("\nder" + x.der.dato+"\n");
+                
+                
+            }
+            if(x.izq != null){
+                System.out.println("izq" + x.izq.dato+"\n");
+            }
+            System.out.println("\n");
+            Lista(x.izq);
+            Lista(x.der);
+        }
+    }
+   
     public void breadthFrist(){
         NodoAVL r = root;
 	Queue<NodoAVL> queue = new LinkedList();
@@ -149,4 +198,7 @@ public class ArbolAVL {
 	}
     }
     
+    protected void visit(NodoAVL n){
+        System.out.print(n.dato+", ");
+    }	
 }

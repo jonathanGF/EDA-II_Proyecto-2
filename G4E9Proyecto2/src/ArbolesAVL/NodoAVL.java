@@ -12,4 +12,11 @@ public class NodoAVL {
         this.der = null;
         this.izq = null;
     }
+    public void setIzq(NodoAVL izq) {
+        this.izq = izq;
+    }
+    
+    public void setDer(NodoAVL der) {
+        this.der = der;
+    }
 }
