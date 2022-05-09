@@ -9,24 +9,28 @@ package ArbolEA;
  * @author jonat
  */
 public class PilaArbolExp {
-    private NodoPila tope;
+    private NodosPila tope;
     
     public PilaArbolExp(){
         tope=null;
     }
     
-    public void insertar(NodoArbol elemento){
-        NodoPila nuevo;
-        nuevo=new NodoPila(elemento);
+    public void push(Nodo elemento){
+        NodosPila nuevo=new NodosPila(elemento);
         nuevo.siguiente=tope;
         tope=nuevo;
     }
     
-    public boolean pilaVacia(){
-        return tope==null;
+    public Nodo pop(){
+        Nodo temp = null;
+        if(!estaVacia()){
+            temp = tope.dato;
+            tope = tope.siguiente;
+        }
+        return temp;
     }
     
-    public NodoArbol topePila(){
+    public Nodo maxPila(){
         return tope.dato;
     }
     
@@ -34,13 +38,8 @@ public class PilaArbolExp {
         tope=null;
     }
     
-    public NodoArbol quitar(){
-        NodoArbol temp = null;
-        if(!pilaVacia()){
-            temp = tope.dato;
-            tope = tope.siguiente;
-        }
-        return temp;
+     public boolean estaVacia(){
+        return tope==null;
     }
     
 }

@@ -32,7 +32,7 @@ public class MenuArbolExp {
                 case 2:
                     System.out.println("Mostrar Arbol");
                     ArbolExpresion arbol1= new ArbolExpresion(this.expresion);
-                    System.out.println(arbol1.imprimir(2));
+                    System.out.println(arbol1.imprimir());
                     break;
                 case 3:
                     System.out.println("Resultado de la expresion:");

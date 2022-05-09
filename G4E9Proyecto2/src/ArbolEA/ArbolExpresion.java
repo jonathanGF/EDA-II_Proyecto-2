@@ -9,7 +9,7 @@ package ArbolEA;
  * @author jonat
  */
 public class ArbolExpresion {
-    NodoArbol raiz;
+    Nodo raiz;
     
     public ArbolExpresion(){
         raiz=null;
@@ -19,87 +19,44 @@ public class ArbolExpresion {
         raiz = creaArbolExp(cadena);
     }
     
-    public void reiniciarArbol(){
-        raiz = null;
-    }
-    
-    public void creaNodo(Object dato){
-        raiz = new NodoArbol(dato);
-    }
-    
-    public NodoArbol creaSubArbol(NodoArbol dato2, NodoArbol dato1, NodoArbol operador){
-        operador.izquierdo = dato1;
-        operador.derecho = dato2;
+    public Nodo creaSubArbol(Nodo operando2, Nodo operando1, Nodo operador){
+        operador.izquierdo = operando2;
+        operador.derecho = operando1;
         return operador;
     }
-    
-    public boolean arbolVacio(){
-        return raiz == null;
-    }
-    
-    private String preOrden(NodoArbol subArbol, String c){
-        String cadena;
-        cadena="";
-        if(subArbol != null){
-            cadena = c + subArbol.dato.toString()+"\n"+preOrden(subArbol.izquierdo, c)+preOrden(subArbol.derecho, c);
-        }
-        return cadena;
-    }
-    
-    private String inOrden(NodoArbol subArbol, String c){
-        String cadena;
-        cadena="";
-        if(subArbol != null){
-            cadena = c + inOrden(subArbol.izquierdo, c)+subArbol.dato.toString()+"\n"+inOrden(subArbol.derecho, c);
-        }
-        return cadena;
-    }    
-    
-    
-    private String posOrden(NodoArbol subArbol, String c){
+ 
+    private String posOrden(Nodo subArbol, String c){
        String cadena;
         cadena="";
         if(subArbol != null){
-            cadena = c + posOrden(subArbol.izquierdo, c)+posOrden(subArbol.derecho, c)+subArbol.dato.toString()+"\n";
+            cadena = c + posOrden(subArbol.izquierdo, c)+posOrden(subArbol.derecho, c)+subArbol.elemento.toString()+"\n";
         }
         return cadena; 
     }
     
-    public String imprimir(int a){
+    public String imprimir(){
         String cadena = "";
-        switch (a) {
-            case 0:
-                cadena=preOrden(raiz, cadena);
-                break;
-            case 1:
-                cadena=inOrden(raiz, cadena);
-                break;
-            case 2:
-                cadena=posOrden(raiz, cadena);
-                break;
-            
-        }
-         return cadena;
+        return cadena=posOrden(raiz, cadena);
     }
     
-    private int prioridad(char c){
-        int p=100;
+    private int jerarquiaOperaciones(char c){
+        int prioridad=50;
         switch (c) {
             case '^':
-                p=30;
+                prioridad=30;
                 break;
             case '*':
             case '/':
-                p=20;
+                prioridad=20;
                 break;
             case '+':
             case '-':
-                p=10;
+                prioridad=10;
                 break;
             default:
-                p=0;//parentesis
+                prioridad=0;//parentesis
         }
-        return p;
+        return prioridad;
     }
     
     private boolean esOperador(char c){
@@ -120,87 +77,91 @@ public class ArbolExpresion {
         return resultado;
     }
     
-    private NodoArbol creaArbolExp(String cadena){
+    private Nodo creaArbolExp(String cadena){
         PilaArbolExp PilaOperadores;
         PilaArbolExp PilaExpresiones;
-        NodoArbol token;
-        NodoArbol op1;
-        NodoArbol op2;
-        NodoArbol op;
+        Nodo token;
+        Nodo op1;
+        Nodo op2;
+        Nodo op;
         PilaOperadores = new PilaArbolExp();
         PilaExpresiones = new PilaArbolExp();
         char caracterEvaluado;
         for(int i=0;i<cadena.length();i++){
             caracterEvaluado=cadena.charAt(i);
-            token=new NodoArbol(caracterEvaluado);
+            token=new Nodo(caracterEvaluado);
             if(!esOperador(caracterEvaluado)){
-                PilaExpresiones.insertar(token);
+                PilaExpresiones.push(token);
             }else{
                 switch (caracterEvaluado) {
                     case '(':
-                        PilaOperadores.insertar(token);
+                        PilaOperadores.push(token);
                         break;
                     case ')':
-                        while (!PilaOperadores.pilaVacia() && !PilaOperadores.topePila().dato.equals('(')) {                            
-                            op2= PilaExpresiones.quitar();
-                            op1= PilaExpresiones.quitar();
-                            op=PilaOperadores.quitar();
+                        while (!PilaOperadores.estaVacia()&& !PilaOperadores.maxPila().elemento.equals('(')) {                            
+                            op2= PilaExpresiones.pop();
+                            op1= PilaExpresiones.pop();
+                            op=PilaOperadores.pop();
                             op=creaSubArbol(op2, op1, op);
-                            PilaExpresiones.insertar(op);
+                            PilaExpresiones.push(op);
                         }
-                        PilaOperadores.quitar();
+                        PilaOperadores.pop();
                         break;
                     default:
-                       while(!PilaOperadores.pilaVacia() && prioridad(caracterEvaluado)<=prioridad(PilaOperadores.topePila().dato.toString().charAt(0))){
-                            op2= PilaExpresiones.quitar();
-                            op1= PilaExpresiones.quitar();
-                            op=PilaOperadores.quitar();
+                       while(!PilaOperadores.estaVacia() && jerarquiaOperaciones(caracterEvaluado)<=jerarquiaOperaciones(PilaOperadores.maxPila().elemento.toString().charAt(0))){
+                            op2= PilaExpresiones.pop();
+                            op1= PilaExpresiones.pop();
+                            op=PilaOperadores.pop();
                             op=creaSubArbol(op2, op1, op);
-                            PilaExpresiones.insertar(op);
+                            PilaExpresiones.push(op);
                          }
-                       PilaOperadores.insertar(token);
+                       PilaOperadores.push(token);
                 }
             }
         }
-        while (!PilaOperadores.pilaVacia()) {            
-            op2= PilaExpresiones.quitar();
-            op1= PilaExpresiones.quitar();
-            op=PilaOperadores.quitar();
+        while (!PilaOperadores.estaVacia()) {            
+            op2= PilaExpresiones.pop();
+            op1= PilaExpresiones.pop();
+            op=PilaOperadores.pop();
             op=creaSubArbol(op2, op1, op);
-            PilaExpresiones.insertar(op); 
+            PilaExpresiones.push(op); 
         }
-        op= PilaExpresiones.quitar();
+        op= PilaExpresiones.pop();
         return op;
     }
     
     public double EvaluaExpresion(){
-        return evalua(raiz);
+        return resolverExpresion(raiz);
     }
     
-    private double evalua(NodoArbol subArbol){
-        double acum =0;
-        if(!esOperador(subArbol.dato.toString().charAt(0))){
-            return Double.parseDouble(subArbol.dato.toString());
+    private double resolverExpresion(Nodo subArbol){
+        double total =0;
+        if(!esOperador(subArbol.elemento.toString().charAt(0))){
+            return Double.parseDouble(subArbol.elemento.toString());
         }else{
-            switch (subArbol.dato.toString().charAt(0)) {
+            switch (subArbol.elemento.toString().charAt(0)) {
                 case '^':
-                    acum= acum + Math.pow(evalua(subArbol.izquierdo),evalua(subArbol.derecho));
+                    total= total + Math.pow(resolverExpresion(subArbol.izquierdo),resolverExpresion(subArbol.derecho));
                     break;
                 case '*':
-                    acum = acum + evalua(subArbol.izquierdo)* evalua(subArbol.derecho);
+                    total = total + resolverExpresion(subArbol.izquierdo)* resolverExpresion(subArbol.derecho);
                     break;
                 case '/':
-                    acum = acum + evalua(subArbol.izquierdo)/evalua(subArbol.derecho);
+                    total = total + resolverExpresion(subArbol.izquierdo)/resolverExpresion(subArbol.derecho);
                     break;
                 case '+':
-                    acum = acum + evalua(subArbol.izquierdo)+evalua(subArbol.derecho);
+                    total = total + resolverExpresion(subArbol.izquierdo)+resolverExpresion(subArbol.derecho);
                     break;
                 case '-':
-                    acum = acum + evalua(subArbol.izquierdo)-evalua(subArbol.derecho);
+                    total = total + resolverExpresion(subArbol.izquierdo)-resolverExpresion(subArbol.derecho);
                     break;
             }
         }
-        return acum;
+        return total;
+    }
+    
+     public boolean arbolVacio(){
+        return raiz == null;
     }
         
     

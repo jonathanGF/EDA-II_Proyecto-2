@@ -8,14 +8,12 @@ package ArbolEA;
  *
  * @author jonat
  */
-public class NodoArbol {
-    Object dato;
-    NodoArbol izquierdo;
-    NodoArbol derecho;
+public class NodosPila {
+    Nodo dato;
+    NodosPila siguiente;
     
-    public NodoArbol(Object x){
+    public NodosPila(Nodo x){
         dato=x;
-        izquierdo = null;
-        derecho = null;
+        siguiente=null;
     }
 }
